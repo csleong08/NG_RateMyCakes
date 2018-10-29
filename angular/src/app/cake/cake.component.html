@@ -1,0 +1,11 @@
+<div class="left">
+  <p>Baker: {{ getCake.baker }} </p>
+  <img src="{{ getCake.url }}" alt="{{ getCake.baker }}">
+</div>
+<div class="right">
+  <p>Av. Rating: {{ avgRating }}</p>
+  <div *ngFor="let cmt of getCake.reviews" class="right" style="text-align:center">
+    <p>Rating: {{ cmt.rating }}</p>
+    <p>Comment: {{ cmt.comment }}</p>
+  </div>
+</div>

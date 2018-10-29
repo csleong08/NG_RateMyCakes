@@ -1,0 +1,33 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="orange" style="text-align:center">
+  <p *ngIf="errors">{{ errors | json }}</p>
+
+  <div class="create">
+    <h3>Rate my Cakes</h3>
+    <form (submit)="createCake()">
+      <p>{{ newCake | json }}</p>
+      <p>Baker: <input type="text" name="newCake.baker" [(ngModel)]="newCake.baker" /></p>
+      <p>Image Url: <input type="text" name="newCake.url" [(ngModel)]="newCake.url"></p>
+      <input type="submit" value="Create Cake" />
+    </form>
+  </div>
+
+  <div *ngFor="let cake of cakes" class="blue" style="text-align:center">
+    <div class="left">
+      <img (click)="showCake(cake._id)" src="{{ cake.url }}" alt="{{ cake.baker }}">
+    </div>
+    <div class="right">
+      <form (submit)="rateCake(cake._id)">
+        <p>{{ review | json }}</p>
+        <p>Rating: <input type="number" min="1" max="5" name="review.rating" [(ngModel)]="review.rating"></p>
+        <p><input type="text" name="review.comment" [(ngModel)]="review.comment" placeholder="Please leave a comment"></p>
+        <input type="submit" value="Post Review!">
+      </form>
+    </div>
+  </div>
+  <app-cake *ngIf="selectedCake" [getCake]="selectedCake"></app-cake>
+
+</div>
+
+ 
